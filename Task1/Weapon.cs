@@ -12,10 +12,10 @@ namespace Task1
 
         public enum WeaponType
         {
-
+            MeleeWeapon
         }
 
-        public Weapon(int x,int y,TileType type, char symbol) : base(x, y, type)
+        public Weapon(int x,int y, char symbol) : base(x, y,TileType.Weapon)
         {
             this.symbol = symbol;
         }
