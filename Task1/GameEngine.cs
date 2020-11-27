@@ -17,6 +17,7 @@ namespace Task1
         public GameEngine(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold)
         {
             map = new Map(min_width, max_width, min_height, max_height, num_enemies,num_gold);
+            this.saveGame(); // Initial reset point
         }
 
         public GameEngine()

@@ -18,3 +18,12 @@ C:\Users\Munashe\source\repos\Task 2\Task-2\Task1\obj\Debug\Task1.Properties.Res
 C:\Users\Munashe\source\repos\Task 2\Task-2\Task1\obj\Debug\Task1.csproj.GenerateResource.cache
 C:\Users\Munashe\source\repos\Task 2\Task-2\Task1\obj\Debug\Task1.exe
 C:\Users\Munashe\source\repos\Task 2\Task-2\Task1\obj\Debug\Task1.pdb
+C:\Users\Munashe\source\repos\POE\Task1\bin\Debug\Task1.exe.config
+C:\Users\Munashe\source\repos\POE\Task1\bin\Debug\Task1.exe
+C:\Users\Munashe\source\repos\POE\Task1\bin\Debug\Task1.pdb
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.Form1.resources
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.GamePlay.resources
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.Properties.Resources.resources
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.csproj.GenerateResource.cache
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.exe
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.pdb

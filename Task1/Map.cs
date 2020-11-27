@@ -21,8 +21,13 @@ namespace Task1
 
         public Map(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold)
         {
+
+            //max width = 13
+            //max height = 13
             this.width = rnd.Next(min_width, max_width + 1);
+            this.width = (this.width > 13 ? 13 : this.width);
             this.height = rnd.Next(min_height, max_height + 1);
+            this.height = (this.height > 13 ? 13 : this.height);
 
             this.map = new Tile[height, width];
 

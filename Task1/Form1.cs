@@ -69,6 +69,24 @@ namespace Task1
     
         }
 
+        public void resetAfterDeath()
+        {
+            try
+            {
+                FileStream save_file = new FileStream("gamesave.dat", FileMode.Open, FileAccess.Read);
+                save_file.Close();
+
+                GamePlay gp = new GamePlay();
+                gp.setCaller(this);
+                gp.Show();
+                this.Hide();
+            }
+            catch (Exception exc)
+            {
+                errorLabel.Text = "No saved game found";
+            }
+        }
+
         
     }
 }

@@ -57,7 +57,7 @@ namespace Task1
 
                 if (ge.GetMap().getHero().getHp() <= 0)
                 {
-                    actionstatusLabel.Text += "You are now dead!";
+                    actionstatusLabel.Text += "You are now dead! PRESS \'L\' to load from last save.";
                 }else if (ge.getDamageTaken() > 0)
                 {
                     actionstatusLabel.Text += "You took a total of " + ge.getDamageTaken() + " DMG";
@@ -207,6 +207,14 @@ namespace Task1
                     success = true;
                 }
                 actionStatus("attack right", success, response.Substring(1));
+            }
+            else if(e.KeyCode == Keys.L)
+            {
+                if (ge.GetMap().getHero().isDead())
+                {
+                    caller.resetAfterDeath();
+                    this.Dispose();
+                }
             }
             else if(e.KeyCode == Keys.Escape)       // save and exit
             {

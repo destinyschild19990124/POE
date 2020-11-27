@@ -17,7 +17,7 @@ namespace Task1
 
         public override Movement returnMove(Movement dir = Character.Movement.None)
         {
-            return dir;
+            return Character.Movement.None;
         }
 
         public override bool checkRange(Character target)
