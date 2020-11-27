@@ -63,6 +63,7 @@
     <Compile Include="Map.cs" />
     <Compile Include="MeleeWeapon.cs" />
     <Compile Include="RangedWeapon.cs" />
+    <Compile Include="Shop.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Obstacle.cs" />
     <Compile Include="EmptyTile.cs" />

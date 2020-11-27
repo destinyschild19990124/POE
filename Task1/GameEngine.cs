@@ -12,6 +12,7 @@ namespace Task1
     {
 
         private Map map;
+        private Shop shop;
         private int damage_taken;
 
         public GameEngine(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold)

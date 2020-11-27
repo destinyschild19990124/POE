@@ -21,6 +21,17 @@ namespace Task1
         protected Tile[] vision;
         protected int gold_purse = 0;
         protected Boolean lock_vision = false;  //Disable vision from being changed for the purpose of looping through enemies
+        protected Weapon weapon;
+
+        public void setGoldPurse(int gold_purse)
+        {
+            this.gold_purse = gold_purse;
+        }
+
+        public int getGoldPurse()
+        {
+            return this.gold_purse;
+        }
 
         public void lockVision()
         {
@@ -80,6 +91,9 @@ namespace Task1
             if(i is Gold)
             {
                 this.gold_purse += ((Gold)i).getGold();
+            }else if(i is Weapon)
+            {
+                this.weapon = (Weapon)i;
             }
         }
 
