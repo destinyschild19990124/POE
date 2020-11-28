@@ -18,10 +18,10 @@ namespace Task1
         private int width;
         private int height;
 
-        public GamePlay(int min_width, int max_width, int min_height, int max_height, int num_enemies,int num_gold)
+        public GamePlay(int min_width, int max_width, int min_height, int max_height, int num_enemies,int num_gold,int num_weapons)
         {
             InitializeComponent();
-            ge = new GameEngine(min_width, max_width, min_height, max_height, num_enemies,num_gold);
+            ge = new GameEngine(min_width, max_width, min_height, max_height, num_enemies,num_gold,num_weapons);
             width = ge.getWidth();
             height = ge.getHeight();
             redraw();
@@ -129,9 +129,17 @@ namespace Task1
             {
                 return 'M';
             }
+            else if (type is Leader)
+            {
+                return 'L';
+            }
             else if (type is Gold)
             {
                 return 'c';
+            }
+            else if(type is Weapon)
+            {
+                return ((Weapon)type).getSymbol();
             }
             else
             {

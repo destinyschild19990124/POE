@@ -15,11 +15,13 @@ namespace Task1
         private Hero hero;
         private Enemy[] enemies;
         private Item[] items;
+        private int num_gold = 0;
+        private int num_weapons = 0;
         private int width;
         private int height;
 
 
-        public Map(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold)
+        public Map(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold,int num_weapons)
         {
 
             //max width = 13
@@ -45,7 +47,18 @@ namespace Task1
             {
                 num_gold = max_num_gold;
             }
-            this.items = new Item[num_gold];
+            this.num_gold = num_gold;
+
+            //Check that the number of weapons spawned does not exceed the limit
+            int max_num_weapons = ((width - 2) * (height - 2)) - 1 - this.enemies.Length - num_gold;
+            if (num_weapons > max_num_weapons)
+            {
+                num_weapons = max_num_weapons;
+            }
+            this.num_weapons = num_weapons;
+
+
+            this.items = new Item[num_gold+num_weapons];
 
             generateEmptyMap();
             populateEmptyMap();
@@ -82,22 +95,32 @@ namespace Task1
             for (int i = 0; i < enemies.Length; ++i)
             {
                 //0 = Goblin, 1 = Mage
-                int enemy_specification = rnd.Next(0, 2);
+                int enemy_specification = rnd.Next(0, 3);
 
                 if (enemy_specification == 0)
                 {
                     enemies[i] = (Goblin)create(Tile.TileType.Enemy, enemy_specification);
                 }
-                else
+                else if(enemy_specification == 1)
                 {
                     enemies[i] = (Mage)create(Tile.TileType.Enemy, enemy_specification);
+                }
+                else
+                {
+                    enemies[i] = (Leader)create(Tile.TileType.Enemy, enemy_specification);
                 }
                 map[enemies[i].getY(), enemies[i].getX()] = enemies[i];
             }
 
-            for (int i = 0; i < items.Length; ++i)
+            for (int i = 0; i < this.num_gold; ++i)
             {
                 items[i] = (Gold)create(Tile.TileType.Gold, 0);
+                map[items[i].getY(), items[i].getX()] = items[i];
+            }
+
+            for (int i = this.num_gold; i < this.items.Length; ++i)
+            {
+                items[i] = (Weapon)create(Tile.TileType.Weapon, 0);
                 map[items[i].getY(), items[i].getX()] = items[i];
             }
 
@@ -119,14 +142,51 @@ namespace Task1
                 {
                     return new Goblin(spawn_location[1], spawn_location[0]);
                 }
-                else
+                else if(specification == 1)
                 {
                     return new Mage(spawn_location[1], spawn_location[0]);
+                }
+                else
+                {
+                    Leader l = new Leader(spawn_location[1], spawn_location[0]);
+                    l.setTarget(this.getHero());
+                    return l;
                 }
             }
             else if(type == Tile.TileType.Gold)
             {
                 return new Gold(spawn_location[1], spawn_location[0]);
+            }
+            else if(type == Tile.TileType.Weapon)
+            {
+                //0 = melee weapon 1 = ranged weapon
+                int super_type = rnd.Next(0, 2);
+                if (super_type == 0)
+                {
+                    //2 = dagger 3 = longsword
+                    int sub_type = rnd.Next(2, 4);
+                    if (sub_type == 2)
+                    {
+                        return new MeleeWeapon(MeleeWeapon.Types.Dagger, 'd', spawn_location[1], spawn_location[0]);
+                    }
+                    else
+                    {
+                        return new MeleeWeapon(MeleeWeapon.Types.Longsword, 'l', spawn_location[1], spawn_location[0]);
+                    }
+                }
+                else
+                {
+                    //2 = longbow 3 = rifle
+                    int sub_type = rnd.Next(2, 4);
+                    if (sub_type == 2)
+                    {
+                        return new RangedWeapon(RangedWeapon.Types.Longbow, 'b', spawn_location[1], spawn_location[0]);
+                    }
+                    else
+                    {
+                        return new RangedWeapon(RangedWeapon.Types.Rifle, 'r', spawn_location[1], spawn_location[0]);
+                    }
+                }
             }
             else
             {

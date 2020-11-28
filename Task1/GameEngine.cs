@@ -15,9 +15,9 @@ namespace Task1
         private Shop shop;
         private int damage_taken;
 
-        public GameEngine(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold)
+        public GameEngine(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold,int num_weapons)
         {
-            map = new Map(min_width, max_width, min_height, max_height, num_enemies,num_gold);
+            map = new Map(min_width, max_width, min_height, max_height, num_enemies,num_gold,num_weapons);
             this.saveGame(); // Initial reset point
         }
 

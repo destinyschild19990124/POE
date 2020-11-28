@@ -27,3 +27,4 @@ C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.Properties.Resources.res
 C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.csproj.GenerateResource.cache
 C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.exe
 C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.pdb
+C:\Users\Munashe\source\repos\POE\Task1\obj\Debug\Task1.csprojAssemblyReference.cache
