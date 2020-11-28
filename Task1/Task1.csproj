@@ -64,6 +64,12 @@
     <Compile Include="MeleeWeapon.cs" />
     <Compile Include="RangedWeapon.cs" />
     <Compile Include="Shop.cs" />
+    <Compile Include="ShopInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopInterface.Designer.cs">
+      <DependentUpon>ShopInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tile.cs" />
     <Compile Include="Obstacle.cs" />
     <Compile Include="EmptyTile.cs" />
