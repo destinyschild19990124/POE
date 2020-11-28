@@ -79,7 +79,7 @@ namespace Task1
             return this.weapon_type;
         }
 
-        public virtual string getTypeString()
+        public string getTypeString()
         {
             return this.type_string;
         }

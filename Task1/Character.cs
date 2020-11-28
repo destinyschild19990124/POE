@@ -69,6 +69,20 @@ namespace Task1
                 }
             }
         }
+
+        public string loot(Character target,Boolean is_mage)
+        {
+            string looted = "\n[LOOT] Gold = " + target.getGoldPurse();
+            this.gold_purse += target.getGoldPurse();
+
+            if (this.weapon == null && !is_mage)
+            {
+                looted += "\n[LOOT] Weapon = " + target.getWeapon().getTypeString();
+                this.weapon = target.getWeapon();
+            }
+
+            return looted;
+        }
     
 
         public Boolean isDead()

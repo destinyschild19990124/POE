@@ -65,10 +65,6 @@ namespace Task1
             return base.getRange();
         }
 
-        public string getTypeString()
-        {
-            return this.type_string;
-        }
 
         public override string ToString()
         {

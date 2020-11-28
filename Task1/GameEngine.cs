@@ -220,9 +220,11 @@ namespace Task1
 
                 h.attack((Character)target);
                 Character c_target = (Character)target;
+                string loot = "";
 
                 if (c_target.isDead())
                 {
+                    loot = h.loot(c_target, h is Mage);
                     map.removeFromMap(c_target);
                 }
 
@@ -237,7 +239,7 @@ namespace Task1
                     }
                     else
                     {
-                        return "1The enemy is dead";
+                        return "1The enemy is dead" + loot;
                     }
                 }
                 else if(c_target is Hero)

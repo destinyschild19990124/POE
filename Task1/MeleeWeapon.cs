@@ -59,10 +59,6 @@ namespace Task1
             return 1;
         }
 
-        public override string getTypeString()
-        {
-            return this.type_string;
-        }
 
         public override string ToString()
         {
