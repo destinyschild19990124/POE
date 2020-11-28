@@ -27,7 +27,7 @@ namespace Task1
             //max width = 13
             //max height = 13
             this.width = rnd.Next(min_width, max_width + 1);
-            this.width = (this.width > 13 ? 13 : this.width);
+            this.width = (this.width > 15 ? 15 : this.width);
             this.height = rnd.Next(min_height, max_height + 1);
             this.height = (this.height > 13 ? 13 : this.height);
 

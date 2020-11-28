@@ -14,6 +14,7 @@ namespace Task1
             this.setHp(hp);
             this.setMaxHp(hp);
             this.setDamage(2);
+            
         }
 
         public override Movement returnMove(Movement dir)

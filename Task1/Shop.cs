@@ -25,6 +25,16 @@ namespace Task1
             }
         }
 
+        public Weapon[] getInventory()
+        {
+            return this.weapons;
+        }
+
+        public string getPlayerStats()
+        {
+            return ((Hero)buyer).ToString();
+        }
+
         private Weapon randomWeapon()
         {
 
@@ -40,21 +50,21 @@ namespace Task1
         public Boolean canBuy(int num)
         {
             
-            int cost = weapons[num-1].getCost();
+            int cost = weapons[num].getCost();
 
-            return buyer.getGoldPurse() >= cost;
+            return (buyer.getGoldPurse() >= cost && !buyer.isDead());
         }
 
         public void buy(int num)
         {
-            buyer.setGoldPurse(buyer.getGoldPurse() - weapons[num - 1].getCost());
-            buyer.pickUp(weapons[num - 1]);
-            weapons[num - 1] = randomWeapon();
+            buyer.setGoldPurse(buyer.getGoldPurse() - weapons[num].getCost());
+            buyer.pickUp(weapons[num]);
+            weapons[num] = randomWeapon();
         }
 
         public string displayWeapon(int num)
         {
-            return "Buy " + weapons[num - 1].getTypeString() + " ( " + weapons[num - 1] + " GOLD )";
+            return "Buy " + weapons[num].getTypeString() + " ( " + weapons[num].getCost() + " GOLD )";
         }
 
     }

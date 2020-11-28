@@ -193,9 +193,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(12, 509);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(151, 17);
+            this.label9.Size = new System.Drawing.Size(121, 17);
             this.label9.TabIndex = 8;
-            this.label9.Text = "SHIFT - OPEN STORE";
+            this.label9.Text = "P - OPEN STORE";
             // 
             // GamePlay
             // 

@@ -14,6 +14,7 @@ namespace Task1
     {
 
         private Form1 caller;
+        private ShopInterface si = null;
         private GameEngine ge;
         private int width;
         private int height;
@@ -41,7 +42,10 @@ namespace Task1
             this.caller = caller;
         }
 
-       
+       public void nullifyShop()
+        {
+            si = null;
+        }
 
         private void actionStatus(String action,Boolean success,String meta)
         {
@@ -77,6 +81,11 @@ namespace Task1
             updatePlayerStats(ge.getHeroStats());
             updateEnemiesRemaining(ge.getEnemiesRemaining());
             updateAttackingOptions(ge.getAttackingOptions());
+
+            if (si != null)
+            {
+                si.updateInterface();
+            }
         }
 
         private void updateMap()
@@ -96,7 +105,7 @@ namespace Task1
             gameviewLabel.Text = text_view;
         }
 
-        private void updatePlayerStats(String info)
+        public void updatePlayerStats(String info)
         {
             herostatsLabel.Text = info;
         }
@@ -149,6 +158,10 @@ namespace Task1
 
         private void GamePlay_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (si != null)
+            {
+                si.Dispose();
+            }
             caller.Dispose();
         }
 
@@ -277,6 +290,11 @@ namespace Task1
             {
                 if (ge.GetMap().getHero().isDead())
                 {
+                    if(si != null)
+                    {
+                        si.Dispose();
+                    }
+
                     caller.resetAfterDeath();
                     this.Dispose();
                 }
@@ -302,7 +320,14 @@ namespace Task1
                 }
                 
             }
-            
+            else if(e.KeyCode == Keys.P)
+            {
+                if (si == null) {
+                    si = new ShopInterface(ge.getShop());
+                    si.setCaller(this);
+                    si.Show();
+                }
+            }
         }
 
         private void GamePlay_Load(object sender, EventArgs e)

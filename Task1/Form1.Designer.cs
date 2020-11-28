@@ -47,6 +47,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.weaponsBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // minwidthBox
@@ -185,7 +186,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 17);
             this.label7.TabIndex = 13;
-            this.label7.Text = "limit = 13";
+            this.label7.Text = "limit = 15";
             // 
             // label8
             // 
@@ -214,11 +215,23 @@
             this.label9.TabIndex = 16;
             this.label9.Text = "Weapons";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(23, 450);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(326, 68);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "NOTE!!!\r\n\r\nSome methods throw a lot of exceptions so actions\r\n may be delayed in " +
+    "debug mode\r\n";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 466);
+            this.ClientSize = new System.Drawing.Size(524, 531);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.weaponsBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -266,6 +279,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox weaponsBox;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

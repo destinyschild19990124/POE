@@ -16,7 +16,6 @@ namespace Task1
             Longbow
         }
 
-        protected string type_string;
 
         public RangedWeapon(Types ranged_type, char symbol, int x = 0, int y = 0) : base(x, y, symbol)
         {

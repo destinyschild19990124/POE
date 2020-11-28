@@ -18,17 +18,24 @@ namespace Task1
         public GameEngine(int min_width,int max_width,int min_height,int max_height,int num_enemies,int num_gold,int num_weapons)
         {
             map = new Map(min_width, max_width, min_height, max_height, num_enemies,num_gold,num_weapons);
+            this.shop = new Shop(map.getHero());
             this.saveGame(); // Initial reset point
         }
 
         public GameEngine()
         {
             map = this.loadGame();
+            this.shop = new Shop(map.getHero());
         }
 
         public Tile[,] getMapView()
         {
             return map.getMap();
+        }
+
+        public Shop getShop()
+        {
+            return this.shop;
         }
 
         public int getWidth()
