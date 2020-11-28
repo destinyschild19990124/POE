@@ -21,7 +21,7 @@ namespace Task1
         }
 
         protected int damage;
-        protected int range;
+        protected int range = 1;
         protected int durability;
         protected int cost;
         protected WeaponType weapon_type;
@@ -49,10 +49,10 @@ namespace Task1
             return this.range;
         }
 
-        /*public void setDurability(int durability)
+        public void setDurability(int durability)
         {
             this.durability = durability;
-        }*/
+        }
 
         public int getDurability()
         {

@@ -200,6 +200,8 @@ namespace Task1
             if (!hero.isVisionLocked())
             {
                 hero.setVision(returnVision(hero.getX(), hero.getY()));
+                int range = (hero.getWeapon()==null?1:hero.getWeapon().getRange());
+                hero.setAttackingVision(returnAttackingVision(hero.getX(), hero.getY(),range));
             }
 
             for (int i = 0; i < enemies.Length; ++i)
@@ -207,6 +209,8 @@ namespace Task1
                 if (!enemies[i].isVisionLocked())
                 {
                     enemies[i].setVision(returnVision(enemies[i].getX(), enemies[i].getY()));
+                    int range = (enemies[i].getWeapon() == null ? 1 : enemies[i].getWeapon().getRange());
+                    enemies[i].setAttackingVision(returnAttackingVision(enemies[i].getX(), enemies[i].getY(),range));
                 }
             }
         }
@@ -346,6 +350,80 @@ namespace Task1
 
             return vision;
 
+        }
+
+        private Tile[] returnAttackingVision(int x,int y,int range)
+        {
+            Tile[] attacking_vision = new Tile[4*range];
+            Tile[] trimmed_attacking_vision;
+            int index = 0;
+            int out_of_bounds = 0;
+
+            //North direction
+            for(int i = 0; i < range; ++i)
+            {
+                try
+                {
+                    attacking_vision[index] = map[y - 1 - i, x];
+                    ++index;
+                }catch(Exception e )
+                {
+                    ++out_of_bounds;
+                }
+            }
+
+            //South direction
+            for (int i = 0; i < range; ++i)
+            {
+                try
+                {
+                    attacking_vision[index] = map[y + 1 + i, x];
+                    ++index;
+                }
+                catch (Exception e)
+                {
+                    ++out_of_bounds;
+                }
+            }
+
+            //West direction
+            for (int i = 0; i < range; ++i)
+            {
+                try
+                {
+                    attacking_vision[index] = map[y, x - 1 - i];
+                    ++index;
+                }
+                catch (Exception e)
+                {
+                    ++out_of_bounds;
+                }
+            }
+
+            //East direction
+            for (int i = 0; i < range; ++i)
+            {
+
+                try
+                {
+                    attacking_vision[index] = map[y, x + 1 + i];
+                    ++index;
+                }
+                catch (Exception e)
+                {
+                    ++out_of_bounds;
+                }
+            }
+
+            trimmed_attacking_vision = new Tile[(4 * range) - out_of_bounds];
+
+            for(int i = 0; i < trimmed_attacking_vision.Length; ++i)
+            {
+                trimmed_attacking_vision[i] = attacking_vision[i];
+            }
+            attacking_vision = trimmed_attacking_vision;
+
+            return attacking_vision;
         }
 
         private int[] getSpawnPosition()

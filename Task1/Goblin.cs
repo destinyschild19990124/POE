@@ -10,7 +10,10 @@ namespace Task1
     class Goblin : Enemy
     {
 
-        public Goblin(int x,int y) : base(x, y, Tile.TileType.Enemy, 1, 10) { this.weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger, 'd'); }
+        public Goblin(int x,int y) : base(x, y, Tile.TileType.Enemy, 1, 10) { 
+            this.weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger, 'd');
+            this.gold_purse = 1;
+        }
 
         public override Movement returnMove(Character.Movement direction)
         {

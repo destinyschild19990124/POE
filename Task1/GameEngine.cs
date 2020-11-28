@@ -72,13 +72,61 @@ namespace Task1
 
             if (!map.getHero().isDead())
             {
-                if (map.getHero().getVision()[0] is Enemy) { info += "[UP]  " + map.getHero().getVision()[0].ToString() + "\n\n"; }
-                if (map.getHero().getVision()[1] is Enemy) { info += "[DOWN]  " + map.getHero().getVision()[1].ToString() + "\n\n"; }
-                if (map.getHero().getVision()[2] is Enemy) { info += "[LEFT]  " + map.getHero().getVision()[2].ToString() + "\n\n"; }
-                if (map.getHero().getVision()[3] is Enemy) { info += "[RIGHT]  " + map.getHero().getVision()[3].ToString() + "\n\n"; }
+
+                for(int i = 0; i < map.getHero().getAttackingVision().Length; ++i)
+                {
+                    if(map.getHero().getAttackingVision()[i] is Enemy)
+                    {
+                        info += "["+getDirectionAndRange(map.getHero().getAttackingVision()[i]) +"]  " + map.getHero().getAttackingVision()[i].ToString() + "\n\n";
+                    }
+                }
             }
 
             return info;
+        }
+
+        public string getDirectionAndRange(Tile t)
+        {
+            int hero_x = map.getHero().getX();
+            int hero_y = map.getHero().getY();
+            int range = 0;
+            String direction = "";
+
+            if (hero_x == t.getX())
+            {
+                if (hero_y < t.getY())
+                {
+                    direction = "DOWN";
+                }
+                else
+                {
+                    direction = "UP";
+                }
+
+                range = Math.Abs(hero_y - t.getY());
+
+            }
+            else
+            {
+                if (hero_x < t.getX())
+                {
+                    direction = "RIGHT";
+                }
+                else
+                {
+                    direction = "LEFT";
+                }
+
+                range = Math.Abs(hero_x - t.getX());
+            }
+
+            switch (range)
+            {
+                case 2:direction += " + A";break;
+                case 3:direction += " + D";break;
+            }
+
+            return direction;
         }
 
         public Boolean movePlayer(Character.Movement dir)
@@ -121,26 +169,48 @@ namespace Task1
             }
         }
 
-        public String attackEnemy(Character h,Character.Movement dir,Tile t)
+        public String attackEnemy(Character h,Character.Movement dir,int range,Tile t)
         {
             Tile target = new EmptyTile(0,0); // Set as an empty tile for placeholding
 
-            switch (dir)
+            if(h is Hero && h.getWeapon() != null)
             {
-                case Character.Movement.Up:
-                    target = map.getMap()[h.getY() - 1, h.getX()];
-                    break;
-                case Character.Movement.Down:
-                    target = map.getMap()[h.getY() + 1, h.getX()];
-                    break;
-                case Character.Movement.Left:
-                    target = map.getMap()[h.getY(), h.getX() - 1];
-                    break;
-                case Character.Movement.Right:
-                    target = map.getMap()[h.getY(), h.getX() + 1];
-                    break;
-                default: target = t;
-                    break;
+                if ((range + 1) > h.getWeapon().getRange())
+                {
+                    return "0";
+                }
+            }else if(h is Hero && h.getWeapon() == null)
+            {
+                if (range != 0)
+                {
+                    return "0";
+                }
+            }
+
+            try
+            {
+                switch (dir)
+                {
+                    case Character.Movement.Up:
+                        target = map.getMap()[h.getY() - 1 - range, h.getX()];
+                        break;
+                    case Character.Movement.Down:
+                        target = map.getMap()[h.getY() + 1 + range, h.getX()];
+                        break;
+                    case Character.Movement.Left:
+                        target = map.getMap()[h.getY(), h.getX() - 1 - range];
+                        break;
+                    case Character.Movement.Right:
+                        target = map.getMap()[h.getY(), h.getX() + 1 + range];
+                        break;
+                    default:
+                        target = t;
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                return "0";
             }
 
             //Goblins only harm heroes
@@ -206,11 +276,13 @@ namespace Task1
                 {
                     enemies_copy[i].lockVision();
 
-                    for(int j = 0; j < enemies_copy[i].getVision().Length; ++j)
+                    int attacking_vision_length = (enemies_copy[i] is Mage ? 8 : enemies_copy[i].getAttackingVision().Length);
+
+                    for (int j = 0; j < attacking_vision_length; ++j)
                     {
-                        if ((enemies_copy[i] is Goblin || enemies_copy[i] is Leader) && j < 4)     // 4 is the vision limit
+                        if (enemies_copy[i] is Goblin || enemies_copy[i] is Leader)
                         {
-                            string attack_status = attackEnemy(enemies_copy[i], Character.Movement.None, enemies_copy[i].getVision()[j]);
+                            string attack_status = attackEnemy(enemies_copy[i], Character.Movement.None, 0, enemies_copy[i].getAttackingVision()[j]);
                             if (attack_status.Length >= 4 && attack_status.Substring(0, 4) == "hero")
                             {
                                 hero_damage += Convert.ToInt32(attack_status.Substring(4));
@@ -218,7 +290,7 @@ namespace Task1
                             }
                         }else if(enemies_copy[i] is Mage)
                         {
-                            string attack_status = attackEnemy(enemies_copy[i], Character.Movement.None, enemies_copy[i].getVision()[j]);
+                            string attack_status = attackEnemy(enemies_copy[i], Character.Movement.None, 0, enemies_copy[i].getVision()[j]);
                             if (attack_status.Length >= 4 && attack_status.Substring(0, 4) == "hero")
                             {
                                 hero_damage += Convert.ToInt32(attack_status.Substring(4));

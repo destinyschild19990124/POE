@@ -19,9 +19,10 @@ namespace Task1
         protected int max_hp;
         protected int damage;
         protected Tile[] vision;
+        protected Tile[] attacking_vision;      //Some weapons extend range
         protected int gold_purse = 0;
         protected Boolean lock_vision = false;  //Disable vision from being changed for the purpose of looping through enemies
-        protected Weapon weapon;
+        protected Weapon weapon = null;
 
         public void setGoldPurse(int gold_purse)
         {
@@ -31,6 +32,11 @@ namespace Task1
         public int getGoldPurse()
         {
             return this.gold_purse;
+        }
+
+        public Weapon getWeapon()
+        {
+            return this.weapon;
         }
 
         public void lockVision()
@@ -53,7 +59,15 @@ namespace Task1
 
         public virtual void attack(Character target) 
         {
-            target.setHp(target.getHp() - this.damage);
+            target.setHp(target.getHp() - this.getDamage());
+            if (this.weapon != null)
+            {
+                this.weapon.setDurability(this.weapon.getDurability() - 1);
+                if (this.weapon.getDurability() == 0)
+                {
+                    this.weapon = null;
+                }
+            }
         }
     
 
@@ -137,7 +151,14 @@ namespace Task1
 
         public int getDamage()
         {
-            return this.damage;
+            if (this.weapon == null)
+            {
+                return this.damage;
+            }
+            else
+            {
+                return this.weapon.getDamage();
+            }
         }
 
         public void setVision(Tile[] vision)
@@ -150,6 +171,16 @@ namespace Task1
             return this.vision;
         }
 
-        
+        public void setAttackingVision(Tile[] attacking_vision)
+        {
+            this.attacking_vision = attacking_vision;
+        }
+
+        public Tile[] getAttackingVision()
+        {
+            return this.attacking_vision;
+        }
+
+
     }
 }

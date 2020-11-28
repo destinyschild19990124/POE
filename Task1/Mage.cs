@@ -12,7 +12,7 @@ namespace Task1
 
         public Mage(int x,int y) : base(x, y, Tile.TileType.Enemy, 5, 5)
         {
-
+            this.gold_purse = 3;
         }
 
         public override Movement returnMove(Movement dir = Character.Movement.None)

@@ -203,6 +203,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GamePlay_FormClosed);
             this.Load += new System.EventHandler(this.GamePlay_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GamePlay_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GamePlay_KeyUp);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

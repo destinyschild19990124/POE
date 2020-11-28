@@ -152,6 +152,10 @@ namespace Task1
             caller.Dispose();
         }
 
+        string dir_text;
+        Boolean action_complete = true;
+        Character.Movement direction = Character.Movement.None;
+
         private void GamePlay_KeyDown(object sender, KeyEventArgs e)
         {
             actionstatusLabel.Text = "";
@@ -166,11 +170,44 @@ namespace Task1
             }
             else if (e.KeyCode == Keys.A)
             {
-                actionStatus("move left", ge.movePlayer(Character.Movement.Left), "");
+                if (direction == Character.Movement.None)
+                {
+                    actionStatus("move left", ge.movePlayer(Character.Movement.Left), "");
+                }
+                else
+                {
+
+                    String response = ge.attackEnemy(ge.GetMap().getHero(),direction,1, null);
+                    Boolean success = false;
+                    if (response[0] == '1')
+                    {
+                        success = true;
+                    }
+                    actionStatus("attack "+dir_text, success, response.Substring(1));
+
+                    action_complete = true;
+                    direction = Character.Movement.None;
+                }
             }
             else if (e.KeyCode == Keys.D)
             {
-                actionStatus("move right", ge.movePlayer(Character.Movement.Right), "");
+                if (direction == Character.Movement.None)
+                {
+                    actionStatus("move right", ge.movePlayer(Character.Movement.Right), "");
+                }
+                else
+                {
+                    String response = ge.attackEnemy(ge.GetMap().getHero(),direction,2, null);
+                    Boolean success = false;
+                    if (response[0] == '1')
+                    {
+                        success = true;
+                    }
+                    actionStatus("attack "+dir_text, success, response.Substring(1));
+
+                    action_complete = true;
+                    direction = Character.Movement.None;
+                }
             }
             else if (e.KeyCode == Keys.Space)
             {
@@ -178,6 +215,10 @@ namespace Task1
             }
             else if (e.KeyCode == Keys.Up)
             {
+                this.action_complete = false;
+                this.dir_text = "up";
+                this.direction = Character.Movement.Up;
+                /*
                 String response = ge.attackEnemy(ge.GetMap().getHero(), Character.Movement.Up,null);
                 Boolean success = false;
                 if (response[0] == '1')
@@ -185,9 +226,14 @@ namespace Task1
                     success = true;
                 }
                 actionStatus("attack up",success,response.Substring(1));
+                */
             }
             else if (e.KeyCode == Keys.Down)
             {
+                this.action_complete = false;
+                this.dir_text = "down";
+                this.direction = Character.Movement.Down;
+                /*
                 String response = ge.attackEnemy(ge.GetMap().getHero(), Character.Movement.Down,null);
                 Boolean success = false;
                 if (response[0] == '1')
@@ -195,9 +241,14 @@ namespace Task1
                     success = true;
                 }
                 actionStatus("attack down", success, response.Substring(1));
+                */
             }
             else if (e.KeyCode == Keys.Left)
             {
+                this.action_complete = false;
+                this.dir_text = "left";
+                this.direction = Character.Movement.Left;
+                /*
                 String response = ge.attackEnemy(ge.GetMap().getHero(), Character.Movement.Left,null);
                 Boolean success = false;
                 if (response[0] == '1')
@@ -205,9 +256,14 @@ namespace Task1
                     success = true;
                 }
                 actionStatus("attack left", success, response.Substring(1));
+                */
             }
             else if (e.KeyCode == Keys.Right)
             {
+                this.action_complete = false;
+                this.dir_text = "right";
+                this.direction = Character.Movement.Right;
+                /*
                 String response = ge.attackEnemy(ge.GetMap().getHero(),Character.Movement.Right,null);
                 Boolean success = false;
                 if (response[0] == '1')
@@ -215,6 +271,7 @@ namespace Task1
                     success = true;
                 }
                 actionStatus("attack right", success, response.Substring(1));
+                */
             }
             else if(e.KeyCode == Keys.L)
             {
@@ -251,6 +308,23 @@ namespace Task1
         private void GamePlay_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void GamePlay_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!action_complete && (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right))
+            {
+                String response = ge.attackEnemy(ge.GetMap().getHero(),direction, 0, null);
+                Boolean success = false;
+                if (response[0] == '1')
+                {
+                    success = true;
+                }
+                actionStatus("attack "+dir_text, success, response.Substring(1));
+
+                action_complete = true;
+                direction = Character.Movement.None;
+            }
         }
     }
 

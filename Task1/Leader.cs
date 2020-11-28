@@ -11,7 +11,10 @@ namespace Task1
     {
         Tile target;
 
-        public Leader(int x,int y) : base(x, y, TileType.Enemy, 2, 20) { this.weapon = new MeleeWeapon(MeleeWeapon.Types.Longsword, 'l'); }
+        public Leader(int x,int y) : base(x, y, TileType.Enemy, 2, 20) { 
+            this.weapon = new MeleeWeapon(MeleeWeapon.Types.Longsword, 'l');
+            this.gold_purse = 2;
+        }
 
         public void setTarget(Tile target)
         {
