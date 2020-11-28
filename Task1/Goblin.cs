@@ -10,7 +10,7 @@ namespace Task1
     class Goblin : Enemy
     {
 
-        public Goblin(int x,int y) : base(x, y, Tile.TileType.Enemy, 1, 10) { }
+        public Goblin(int x,int y) : base(x, y, Tile.TileType.Enemy, 1, 10) { this.weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger, 'd'); }
 
         public override Movement returnMove(Character.Movement direction)
         {
@@ -23,7 +23,7 @@ namespace Task1
             {
                 dir = (Character.Movement)possible_moves[rnd.Next(0,possible_moves.Length)];
 
-                if (this.vision[(int)dir] is EmptyTile)
+                if (this.vision[(int)dir] is EmptyTile || this.vision[(int)dir] is Item)  // Updated to pick up items
                 {
                     move_found = true;
 

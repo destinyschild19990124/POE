@@ -16,7 +16,6 @@ namespace Task1
             Longsword
         }
 
-        protected string type_string;
 
         public MeleeWeapon(Types melee_type,char symbol,int x = 0,int y = 0) : base(x, y, symbol)
         {
@@ -60,7 +59,7 @@ namespace Task1
             return 1;
         }
 
-        public string getTypeString()
+        public override string getTypeString()
         {
             return this.type_string;
         }

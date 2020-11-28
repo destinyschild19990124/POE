@@ -235,7 +235,7 @@ namespace Task1
                 enemies = new_list;
                 updateVision();
             }
-            else if(type.getTileType() == Tile.TileType.Gold)
+            else if(type.getTileType() == Tile.TileType.Gold || type.getTileType() == Tile.TileType.Weapon)
             {
                 Item[] new_list = new Item[items.Length - 1];
                 int index = 0;
@@ -255,7 +255,8 @@ namespace Task1
 
                 items = new_list;
                 updateVision();
-            }else if(type.getTileType() == Tile.TileType.Hero)
+            }
+            else if(type.getTileType() == Tile.TileType.Hero)
             {
                 map[hero.getY(), hero.getX()] = new EmptyTile(hero.getY(),hero.getX());
                 updateVision();
@@ -272,7 +273,7 @@ namespace Task1
             {
                 case Character.Movement.Up:
                     at_position = this.getItemAtPosition(character.getY() - 1, character.getX());
-                    if (c is Hero && at_position != null)
+                    if ((c is Hero || c is Goblin || c is Leader) && at_position != null )
                     {  
                         c.pickUp((Item)at_position);
                     }
@@ -285,7 +286,7 @@ namespace Task1
                     break;
                 case Character.Movement.Down:
                     at_position = this.getItemAtPosition(character.getY() + 1, character.getX());
-                    if (c is Hero && at_position != null)
+                    if ((c is Hero || c is Goblin || c is Leader) && at_position != null)
                     {
                         c.pickUp((Item)at_position);
                     }
@@ -298,7 +299,7 @@ namespace Task1
                     break;
                 case Character.Movement.Left:
                     at_position = this.getItemAtPosition(character.getY(), character.getX() - 1);
-                    if (c is Hero && at_position != null)
+                    if ((c is Hero || c is Goblin || c is Leader) && at_position != null)
                     {
                         c.pickUp((Item)at_position);
                     }
@@ -311,7 +312,7 @@ namespace Task1
                     break;
                 case Character.Movement.Right:
                     at_position = this.getItemAtPosition(character.getY(), character.getX() + 1);
-                    if (c is Hero && at_position != null)
+                    if ((c is Hero || c is Goblin || c is Leader) && at_position != null)
                     {
                         c.pickUp((Item)at_position);
                     }

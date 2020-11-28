@@ -33,7 +33,12 @@ namespace Task1
 
         public override string ToString()
         {
-            return "Player Stats:" + "\nHP: " + this.getHp() + "\nDamage: " + damage + "\nGold: " + gold_purse + "\n[" + this.x + "," + this.y + "]";
+            string current_weapon = (weapon == null ? "Bare hands" : weapon.getTypeString());
+            string weapon_range = (current_weapon == "Bare hands" ? "1" : weapon.getRange().ToString());
+            string weapon_damage = (current_weapon == "Bare hands" ? "2" : weapon.getDamage().ToString());
+            string weapon_durability = (current_weapon == "Bare hands" ? "" : weapon.getDurability().ToString());
+
+            return "Player Stats:" + "\nHP: " + this.getHp() + "\nCurrent Weapon : " + current_weapon + "\nWeapon Range : " + weapon_range + "\nWeapon Damage : " + weapon_damage + (weapon_durability==""?"":("\nWeapon Durability : " + weapon_durability)) + "\nGold: " + gold_purse + "\n[" + this.x + "," + this.y + "]";
         }
     }
 }

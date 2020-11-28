@@ -25,6 +25,7 @@ namespace Task1
         protected int durability;
         protected int cost;
         protected WeaponType weapon_type;
+        protected string type_string;
 
         protected char symbol;
 
@@ -76,6 +77,11 @@ namespace Task1
         public WeaponType getWeaponType()
         {
             return this.weapon_type;
+        }
+
+        public virtual string getTypeString()
+        {
+            return this.type_string;
         }
 
 

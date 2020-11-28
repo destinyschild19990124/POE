@@ -54,7 +54,7 @@ namespace Task1
 
         public string displayWeapon(int num)
         {
-            return "Buy " + (weapons[num - 1] is MeleeWeapon ? ((MeleeWeapon)weapons[num - 1]).getTypeString() : ((RangedWeapon)weapons[num - 1]).getTypeString()) + " ( " + weapons[num - 1] + " GOLD )";
+            return "Buy " + weapons[num - 1].getTypeString() + " ( " + weapons[num - 1] + " GOLD )";
         }
 
     }

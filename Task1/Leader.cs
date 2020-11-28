@@ -11,7 +11,7 @@ namespace Task1
     {
         Tile target;
 
-        public Leader(int x,int y) : base(x, y, TileType.Enemy, 2, 20) { }
+        public Leader(int x,int y) : base(x, y, TileType.Enemy, 2, 20) { this.weapon = new MeleeWeapon(MeleeWeapon.Types.Longsword, 'l'); }
 
         public void setTarget(Tile target)
         {
@@ -28,8 +28,12 @@ namespace Task1
             int target_x = target.getX();
             int target_y = target.getY();
 
+            //The first option should be moving on the axis (x or y) with the shortest distance to the target
+            //The second option should therefore be moving on the other axis
+
             int x_difference = Math.Abs(target_x - this.getX());
             int y_difference = Math.Abs(target_y - this.getY());
+
 
             Movement second_option = Movement.None;
 
@@ -69,7 +73,7 @@ namespace Task1
                 }
             }
 
-            if (this.vision[(int)direction] is EmptyTile)
+            if (this.vision[(int)direction] is EmptyTile || this.vision[(int)direction] is Item)  //Updated to pick up items
             {
                 return direction;
             }
@@ -77,7 +81,7 @@ namespace Task1
             {
                 return Movement.None;
             }
-            else if(this.vision[(int)second_option] is EmptyTile)
+            else if(this.vision[(int)second_option] is EmptyTile || this.vision[(int)direction] is Item)  //Updated to pick up items
             {
                 return second_option;
             }
@@ -120,7 +124,7 @@ namespace Task1
 
                     dir = (Character.Movement)available_moves[rnd.Next(0, available_moves.Length)];
 
-                    if (this.vision[(int)dir] is EmptyTile)
+                    if (this.vision[(int)dir] is EmptyTile || this.vision[(int)dir] is Item)  //Updated to pick up items
                     {
                         move_found = true;
 

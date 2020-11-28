@@ -145,7 +145,7 @@ namespace Task1
 
             //Goblins only harm heroes
             //Mages harm the hero, goblins and other mages
-            if ((h is Hero && target is Enemy && !h.isDead()) || (h is Goblin && target is Hero) || (h is Mage && target is Character))
+            if ((h is Hero && target is Enemy && !h.isDead()) || (h is Goblin && target is Hero) || (h is Leader && target is Hero) || (h is Mage && target is Character))
             {
 
                 h.attack((Character)target);
@@ -208,7 +208,7 @@ namespace Task1
 
                     for(int j = 0; j < enemies_copy[i].getVision().Length; ++j)
                     {
-                        if (enemies_copy[i] is Goblin && j < 4)
+                        if ((enemies_copy[i] is Goblin || enemies_copy[i] is Leader) && j < 4)     // 4 is the vision limit
                         {
                             string attack_status = attackEnemy(enemies_copy[i], Character.Movement.None, enemies_copy[i].getVision()[j]);
                             if (attack_status.Length >= 4 && attack_status.Substring(0, 4) == "hero")

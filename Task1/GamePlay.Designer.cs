@@ -103,7 +103,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(386, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(402, 609);
+            this.panel1.Size = new System.Drawing.Size(447, 609);
             this.panel1.TabIndex = 5;
             // 
             // enemiesremainingLabel
@@ -111,7 +111,7 @@
             this.enemiesremainingLabel.AutoSize = true;
             this.enemiesremainingLabel.BackColor = System.Drawing.SystemColors.Control;
             this.enemiesremainingLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.enemiesremainingLabel.Location = new System.Drawing.Point(12, 179);
+            this.enemiesremainingLabel.Location = new System.Drawing.Point(12, 229);
             this.enemiesremainingLabel.Name = "enemiesremainingLabel";
             this.enemiesremainingLabel.Size = new System.Drawing.Size(0, 17);
             this.enemiesremainingLabel.TabIndex = 12;
@@ -121,7 +121,7 @@
             this.attackingOptionsLabel.AutoSize = true;
             this.attackingOptionsLabel.BackColor = System.Drawing.SystemColors.Control;
             this.attackingOptionsLabel.ForeColor = System.Drawing.Color.Blue;
-            this.attackingOptionsLabel.Location = new System.Drawing.Point(12, 454);
+            this.attackingOptionsLabel.Location = new System.Drawing.Point(12, 481);
             this.attackingOptionsLabel.Name = "attackingOptionsLabel";
             this.attackingOptionsLabel.Size = new System.Drawing.Size(0, 17);
             this.attackingOptionsLabel.TabIndex = 11;
@@ -138,7 +138,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 145);
+            this.label6.Location = new System.Drawing.Point(12, 195);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(150, 17);
             this.label6.TabIndex = 8;
@@ -148,7 +148,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 424);
+            this.label5.Location = new System.Drawing.Point(12, 451);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 17);
             this.label5.TabIndex = 7;
@@ -189,7 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 639);
+            this.ClientSize = new System.Drawing.Size(845, 639);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);

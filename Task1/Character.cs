@@ -93,8 +93,13 @@ namespace Task1
                 this.gold_purse += ((Gold)i).getGold();
             }else if(i is Weapon)
             {
-                this.weapon = (Weapon)i;
+                equip((Weapon)i);
             }
+        }
+
+        private void equip(Weapon w)
+        {
+            this.weapon = w;
         }
 
         public abstract Movement returnMove(Movement direction = 0);

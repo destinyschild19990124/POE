@@ -20,7 +20,18 @@ namespace Task1
 
         public override string ToString()
         {
-            return this.GetType().Name +" at ["+ this.x + ", " + this.y + "]  (" + damage + " DMG)  (" + this.hp + " HP)";
+            string current_weapon = (weapon == null ? "Bare hands" : weapon.getTypeString());
+            string weapon_damage = (current_weapon == "Bare hands" ? "2" : weapon.getDamage().ToString());
+            string weapon_durability = (current_weapon == "Bare hands" ? "" : weapon.getDurability().ToString());
+
+            string name = (current_weapon=="Bare hands"?"Barehanded: ":"Equipped: ") + this.GetType().Name +"("+this.getHp()+"/"+this.getMaxHp()+"HP) at ["+this.getX()+","+this.getY()+"] ";
+
+            if(current_weapon!="Bare hands")
+            {
+                name += "with " + current_weapon + " (" + weapon_durability + " x " + weapon_damage + " DMG)";
+            }
+
+            return name;
         }
 
     }
